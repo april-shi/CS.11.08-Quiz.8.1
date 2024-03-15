@@ -53,7 +53,26 @@ public class Student {
      */
     public String bestSubject() {
 
-        return null;
+        if (subjects.isEmpty()) {
+            return null;
+        }
+
+        int max = subjects.get(0).getCurrentGrade();
+        String subject = subjects.get(0).getName();
+
+        for (int i = 0; i < subjects.size(); i++) {
+
+            int grade = subjects.get(i).getCurrentGrade();
+
+            if (grade > max) {
+
+                max = subjects.get(i).getCurrentGrade();
+                subject = subjects.get(i).getName();
+
+            }
+        }
+
+        return subject;
 
     }
 
@@ -63,7 +82,22 @@ public class Student {
      */
     public double averageGrade() {
 
-        return 0.0;
+        if (subjects.isEmpty()) {
+
+            return 0.0;
+
+        }
+
+        int totalSubjects = 0;
+        int totalGrade = 0;
+        for (int i = 0; i < subjects.size(); i++) {
+
+            totalGrade += subjects.get(i).getCurrentGrade();
+            totalSubjects++;
+
+        }
+
+        return (double) totalGrade / totalSubjects;
 
     }
 
